@@ -1,0 +1,31 @@
+---
+- name: Install immuta-scrypt python requirements
+  ansible.builtin.pip:
+    name:
+      - scrypt==0.8.20
+      - pydash==5.1.0
+      - psutil==5.9.1
+    virtualenv: "{{ playbook_dir }}/venv"
+  tags:
+    - always
+
+- name: Run immuta-scrypt
+  ansible.builtin.shell: |
+      source "{{ playbook_dir }}/venv/bin/activate"
+      python3 "{{ playbook_dir }}/kdf.py" "{{ immuta_admin_password }}"
+  register: immuta_admin_password_hash
+  tags:
+    - always
+
+- name: Set key hash fact
+  set_fact:
+    immuta_admin_password_hash: "{{ immuta_admin_password_hash }}"
+  tags:
+    - always
+
+- name: Print key
+  ansible.builtin.debug:
+    msg: "Hashed password: {{ immuta_admin_password_hash.stdout }}"
+  tags:
+    - never
+    - debug

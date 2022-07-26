@@ -1,0 +1,7 @@
+---
+- name: immuta-scrypt
+  hosts: localhost
+  roles:
+    - scrypt
+  vars:
+    immuta_admin_password: "secret"
