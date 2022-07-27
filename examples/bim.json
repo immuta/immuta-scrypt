@@ -1,0 +1,62 @@
+[
+    {
+        "model": "user",
+        "items": [
+            {
+                "id": "{{ ID }}",
+                "iamid": "bim",
+                "userid": "{{ IMMUTA_ADMIN_USER_ID }}",
+                "permissions": [
+                    "CREATE_DATA_SOURCE",
+                    "CREATE_PROJECT",
+                    "CREATE_S3_DATASOURCE",
+                    "IMPERSONATE_HDFS_USER",
+                    "IMPERSONATE_USER",
+                    "AUDIT",
+                    "USER_ADMIN",
+                    "APPLICATION_ADMIN",
+                    "GOVERNANCE",
+                    "FETCH_POLICY_INFO",
+                    "CREATE_FILTER"
+                ],
+                "profile": "{{ ID }}",
+                "authentication": "{{ ID }}",
+                "systemGenerated": false
+            }
+       ]
+   },
+    {
+        "model": "profile",
+        "items": [
+            {
+                "id": "{{ ID }}",
+                "name": "Immuta Admin",
+                "email": "{{ IMMUTA_ADMIN_USER_ID }}",
+                "organization": "Immuta Admin"
+            }
+       ]
+   },
+   {
+        "model": "authentication",
+        "items": [
+            {
+                "id": "{{ ID }}",
+                "username": "{{ IMMUTA_ADMIN_USER_ID }}",
+                "password": "{{ IMMUTA_ADMIN_PASSWORD_HASH }}"
+            }
+        ]
+    },
+    {
+        "model": "token",
+        "items": [
+            {
+                "type": "apikey",
+                "iamid": "bim",
+                "userid": "{{ IMMUTA_ADMIN_USER_ID }}",
+                "token": "{{ IMMUTA_API_KEY }}",
+                "context": "Current Project",
+                "name": "Default Administrator APIKey"
+            }
+        ]
+    }
+]
